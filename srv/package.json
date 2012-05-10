@@ -1,0 +1,25 @@
+{
+  "name": "layer43",
+  "author": "Stanislas Polu <polu.stanislas@gmail.com>",
+  "subdomain": "layer43",
+  "domains": [
+    "layer43.org",
+    "www.layer43.org"   
+  ],                    
+  "version": "0.1.1",   
+  "scripts": {
+    "start": "./app.js"
+  },
+  "dependencies": {
+    "express": "2.5.9",
+    "fwk": "0.1.x",
+    "dynamodb": "0.2.x",
+    "mu": "0.5.x",
+    "mustache": "0.3.x",
+    "stache": "0.1.x"
+  },
+  "engines": {
+    "node": "v0.6.x"
+  },
+  "analyze": false
+}
