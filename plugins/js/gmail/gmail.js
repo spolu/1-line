@@ -15,7 +15,6 @@ setInterval(function() {
    *
    */
 
-
   $("iframe").each(function(idx, el) {
     
     // FROM ADDRESS
