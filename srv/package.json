@@ -4,9 +4,9 @@
   "subdomain": "layer43",
   "domains": [
     "layer43.org",
-    "www.layer43.org"   
-  ],                    
-  "version": "0.1.1",   
+    "www.layer43.org"
+  ],
+  "version": "0.1.1-8",
   "scripts": {
     "start": "./app.js"
   },

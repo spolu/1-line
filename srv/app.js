@@ -25,8 +25,6 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  
-  app.enable("jsonp callback"); 
 
   express.session.ignore.push('/robots.txt');    
 });
@@ -43,13 +41,17 @@ app.configure('production', function() {
 
 app.get('/signature', function(req, res, next) {
 
-  console.log('USER: ' + req.param('email'));
-  var email_count = 3210;
-  var ref_count = 27;
+  var email = req.param('email');
+  
+  var email_count = Math.floor(Math.random() * 9999) + 1;
+  var ref_count = Math.floor(Math.random() * 999) + 1;;
 
   var html = '';
   html += '<span class="layer43-signature" layer43="signature"';
   html +=       'style="color: #aaa; font-weight: bold;" >';
+  html += '  <span style="color: #ddd">';
+  html += '    L43: ';
+  html += '  </span>';
   html += '  <span style="color: #888">';
   html += '    ' + email_count + ' emails';
   html += '  </span>';
@@ -57,14 +59,14 @@ app.get('/signature', function(req, res, next) {
   html += '  <span style="color: #888">';
   html += '    ' + ref_count + ' referrals: ';
   html += '  </span>';
-  //html += '  <br/>';
-  html += '  <a href="http://layer43.prg" target="_blank"';
+  html += '  <a href="http://layer43.org" target="_blank"';
   html += '     style="color: #4f9Bd1; text-decoration: none">';
-  html += '    Today is the Day we Reshape Tomorrow!';
+  html += '      A small Donation Today. A better World Tomorrow!';
   html += '  </a>';
   html += '  <br/>';
   html += '</span>';
   
+  res.header('Access-Control-Allow-Origin', '*');
   res.json({ ok: true,
              html: html });
 });
