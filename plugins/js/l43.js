@@ -6,6 +6,15 @@ L43.build_signature = function(email, cont_) {
   var args = '?email=' + encodeURIComponent(email);
   $.ajax({ url: endpoint + args })
     .done(function(data) {
+      if(typeof data !== 'object') {
+        try {
+          data = JSON.parse(data);
+        }
+        catch(err) {
+          cont_(err);
+        }
+      }
+      //console.log(data);
       if(data.ok) {
         //console.log('OK');
         //console.log(data.html);

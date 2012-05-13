@@ -1,0 +1,1 @@
+This is the firefox Layer43 add-on.
