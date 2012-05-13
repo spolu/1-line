@@ -1,6 +1,11 @@
 
 setInterval(function() {  
 
+  // avoid execution in iframes
+  if (window.top !== window) {
+    return;
+  }
+
   /*
    * GMAIL
    *
