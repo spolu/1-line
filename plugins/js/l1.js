@@ -2,7 +2,7 @@
 var L1 = {};
 
 L1.build_signature = function(email, cont_) {
-  var endpoint = 'https://layer43.nodejitsu.com/signature';
+  var endpoint = 'https://1-line.nodejitsu.com/signature';
   var args = '?email=' + encodeURIComponent(email);
   $.ajax({ url: endpoint + args })
     .done(function(data) {
