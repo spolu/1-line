@@ -8,6 +8,7 @@ var util = require('util');
 var fwk = require('fwk');
 var express = require('express');
 var http = require('http');
+var Mu = require('mu');
 
 var app = module.exports = express.createServer();
 
@@ -39,6 +40,7 @@ app.configure('production', function() {
 
 // Routes
 
+/* signature */
 app.get('/signature', function(req, res, next) {
 
   var email = req.param('email');
@@ -47,7 +49,7 @@ app.get('/signature', function(req, res, next) {
   var ref_count = Math.floor(Math.random() * 999) + 1;;
 
   var html = '';
-  html += '<span class="layer43-signature" layer43="signature"';
+  html += '<span class="l1-signature" l1="signature"';
   html +=       'style="color: #aaa; font-weight: bold;" >';
   html += '  <span style="color: #ddd">';
   html += '    L43: ';
@@ -59,7 +61,7 @@ app.get('/signature', function(req, res, next) {
   html += '  <span style="color: #888">';
   html += '    ' + ref_count + ' referrals: ';
   html += '  </span>';
-  html += '  <a href="http://layer43.org" target="_blank"';
+  html += '  <a href="http://1-line.org" target="_blank"';
   html += '     style="color: #4f9Bd1; text-decoration: none">';
   html += '      A small Donation Today. A better World Tomorrow!';
   html += '  </a>';
@@ -70,6 +72,23 @@ app.get('/signature', function(req, res, next) {
   res.json({ ok: true,
              html: html });
 });
+
+
+
+/* home */
+app.get('/', function(req, res, next) {
+  var locals = {};
+  res.render('index', {
+    locals: locals
+  });
+});
+
+
+/* 404 */
+app.get('/404', function(req, res, next) {
+  res.json({ok: false, page: 404}, 404);
+});
+
 
 app.listen(8080);
 

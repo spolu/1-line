@@ -7,9 +7,9 @@
 	<key>Builder Version</key>
 	<string>7534.55.3</string>
 	<key>CFBundleDisplayName</key>
-	<string>layer43</string>
+	<string>1-Line</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.layer43.safari</string>
+	<string>com.1line.safari</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -25,7 +25,7 @@
 			<key>End</key>
 			<array>
 				<string>js/lib/jquery-1.7.2.min.js</string>
-				<string>js/l43.js</string>
+				<string>js/l1.js</string>
 				<string>js/gmail/gmail.js</string>
 			</array>
 		</dict>
@@ -35,7 +35,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>A Better World. One email at a Time.</string>
+	<string>SuperCharged Viral Charity Incentive through Email Signature Donation</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -53,6 +53,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>http://layer43.org</string>
+	<string>http://1-line.org</string>
 </dict>
 </plist>

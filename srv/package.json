@@ -1,10 +1,10 @@
 {
-  "name": "layer43",
+  "name": "1line",
   "author": "Stanislas Polu <polu.stanislas@gmail.com>",
-  "subdomain": "layer43",
+  "subdomain": "1line",
   "domains": [
-    "layer43.org",
-    "www.layer43.org"
+    "1-line.org",
+    "www.1-line.org"
   ],
   "version": "0.1.1-8",
   "scripts": {
