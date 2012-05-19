@@ -18,11 +18,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <!-- cell.js -->
     <script src="/lib/cell-0.3.min.js"></script>
-    <!--
     <link rel="shortcut icon" type="image/x-icon" href="/assets/ico/favicon.ico">
-    -->
-    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/layer43.css" rel="stylesheet">
+    <link href="/assets/css/1-line.css" rel="stylesheet">
   </head>
   
   <body>
@@ -49,8 +46,184 @@
       </div>
     </div>
 
-    <div class="rightcontainer">
+    <div class="rightcontainer charity">     
+      <div class="organization oxfam">
+        <table>
+          <tr>
+            <td>
+              <div class="image oxfam"></div>
+            </td>
+            <td>
+              <div class="desc">          
+                <div class="title">Oxfam International</div>
+                <div class="pitch">Working together to find lasting solutions to poverty and injustice</div>
+                <div class="options">
+                  <div class="option">
+                    <span class="price">£18</span> can provide safe water for 20 people</span>
+                  </div>
+                  <div class="option">
+                    <span class="price">£2/month</span> can provide school lunches</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="organization dwb">
+        <table>
+          <tr>
+            <td>
+              <div class="image dwb"></div>
+            </td>
+            <td>
+              <div class="desc">
+                <div class="title">Doctors Without Borders</div>
+                <div class="pitch">Providing independent, impartial medical aid to those most in need</div>
+                <div class="options">
+                  <div class="option">
+                    <span class="price">$35</span> can provide enough measles vaccine to inoculate 35 people</span>
+                  </div>
+                  <div class="option">
+                    <span class="price">$75</span> can provide clean water to 1,330 people for 7 days</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="organization stc">
+        <table>
+          <tr>
+            <td>
+              <div class="image stc"></div>
+            </td>
+            <td>
+              <div class="desc">
+                <div class="title">Save The Children</div>
+                <div class="pitch">We save children’s lives. We help them fulfil their potential.</div>
+                <div class="options">
+                  <div class="option">
+                    <span class="price">£25</span> can buy 10 days of treatment for 5 children with malnutrition</span>
+                  </div>
+                  <div class="option">
+                    <span class="price">€30</span> can buy clean water kits for two families of five for 1 month</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="organization rc">
+        <table>
+          <tr>
+            <td>
+              <div class="image rc"></div>
+            </td>
+            <td>
+              <div class="desc">
+                <div class="title">Red Cross</div>
+                <div class="pitch">Help people in crisis, whoever and wherever they are</div>
+                <div class="options">
+                  <div class="option">
+                    <span class="price">£50</span> can provide seeds for ten families to grow enough food for a year</span>
+                  </div>
+                  <div class="option">
+                    <span class="price">£5/month</span> can buy 36 family size mosquito nets</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.organization.oxfam').click(function() {
+        window.open('http://www.oxfam.org.uk/donate');
+      });
+      $('.organization.dwb').click(function() {
+        window.open('https://www.doctorswithoutborders.org/donate');
+      });
+      $('.organization.stc').click(function() {
+        window.open('https://secure.savethechildren.org/donate');
+      });
+      $('.organization.rc').click(function() {
+        window.open('http://www.redcross.org.uk/donate');
+      });
+    });
+    </script>
+    
+
+    <div class="rightcontainer signature">
+      <div class="super">        
+        The 1-Line plugin for Chrome, Firefox & Safari adds the following line at the end of each
+        of your Gmail emails:
+      </div>
+      <center>
+        <br/>
+        <img src="/assets/img/gmail.png"/>
+        <br/><br/><br/><br/>
+        <div class="call">
+          Add 1-Line to Gmail &raquo;
+        </div>
+        <br/>
+        <div class="instruction chrome hidden">
+          Chrome instructions
+        </div>
+        <div class="instruction safari hidden">
+          Safari instructions
+        </div>
+        <div class="instruction firefox hidden">
+          Firefox instructions
+        </div>
+        <div class="instruction unknown hidden">
+          Unknown instructions
+        </div>
+      </center>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.rightcontainer.signature .call').click(function() {
+        console.log(navigator.userAgent.toLowerCase());
+        if(navigator.userAgent.toLowerCase().indexOf('chrome') !== -1) {
+          $('.instruction.chrome').removeClass('hidden');
+        }
+        else if(navigator.userAgent.toLowerCase().indexOf('safari') !== -1) {
+          $('.instruction.safari').removeClass('hidden');
+        }
+        else if(navigator.userAgent.toLowerCase().indexOf('firefox') !== -1) {
+          $('.instruction.firefox').removeClass('hidden');
+        }
+        else {
+          $('.instruction.unknown').removeClass('hidden');
+        }
+        $('.signature .call').addClass('disabled');
+      });
+    });
+    </script>
+
+
+
+
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.charity').click(function() {
+        $('.charity').addClass('visible');
+        $('.signature').removeClass('visible');
+      })
+      $('.signature').click(function() {
+        $('.signature').addClass('visible');
+        $('.charity').removeClass('visible');
+      })
+    });
+    </script>
     
   </body>
 </html>

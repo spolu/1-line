@@ -46,7 +46,7 @@ app.get('/signature', function(req, res, next) {
   var email = req.param('email');
   
   var email_count = Math.floor(Math.random() * 9999) + 1;
-  var ref_count = Math.floor(Math.random() * 999) + 1;;
+  var visit_count = Math.floor(Math.random() * 999) + 1;;
 
   var html = '';
   html += '<span class="l1-signature" l1="signature"';
@@ -58,13 +58,13 @@ app.get('/signature', function(req, res, next) {
   html += '  <span style="color: #888">';
   html += '    ' + email_count + ' emails';
   html += '  </span>';
-  html += '  & referred ';
+  html += '  & generated ';
   html += '  <span style="color: #888">';
-  html += '    ' + ref_count + ' donators: ';
+  html += '    ' + visit_count + ' visits: ';
   html += '  </span>';
   html += '  <a href="http://1-line.org" target="_blank"';
   html += '     style="color: #4f9Bd1; text-decoration: none">';
-  html += '      Make a Donation Now!';
+  html += '      Donate Now!';
   html += '  </a>';
   html += '  <br/>';
   html += '</span>';

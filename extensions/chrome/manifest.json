@@ -8,5 +8,11 @@
       "matches": ["https://mail.google.com/mail/*"],
       "js": ["js/lib/jquery-1.7.2.min.js", "js/l1.js", "js/gmail/gmail.js"]
     }
-  ]
+  ],
+  "icons": 
+    {
+      "128": "icon_128.png",
+      "48": "icon_48.png",
+      "16": "icon_16.png"
+    }
 }

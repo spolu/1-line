@@ -1,0 +1,232 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color:#333;
+    background-color: #fff;
+    height: 100%;
+}
+
+.leftcontainer {    
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 30px;
+    height: 400px;
+    width: 400px;
+}
+
+.header {
+    padding-top: 20px;
+}
+
+.header .name {
+    font-family: "Impact", Helvetica, Arial, sans-serif;
+    font-size: 62px;
+    line-height: 1.2em;
+    font-weight: normal;
+    text-shadow: rgba(248,49,42,1.0) 0px -1px 1px;
+    color: #f76964;
+}
+
+.header .pitch {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    line-height: 1em;
+    color: #222;
+    padding-top: 10px;
+    opacity:0.9;
+}
+
+.header .pitch .sub {
+    margin-top: 20px;
+    line-height: 1.2em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;
+}
+
+
+.leftcontainer .options {
+    margin-top: 40px;
+    margin-left: 0px;
+}
+
+.call {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    line-height: 50px;
+    width: 205px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #145377;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    
+    position: relative;
+    
+    transition: left 0.1s;
+    -moz-transition: left 0.1s;
+    -webkit-transition: left 0.1s;
+    -o-transition: left 0.1s;
+    cursor: pointer;
+}
+
+.call:hover {
+    left: 4px;
+}
+
+
+.rightcontainer {
+    position:absolute;
+    height: 100%;
+    width: 700px;
+    left: 470px;
+    border-left: 1px solid #ddd;
+
+    transition: top 0.1s;
+    -moz-transition: top 0.1s;
+    -webkit-transition: top 0.1s;
+    -o-transition: top 0.1s;
+
+    //background-color: #a3c4eb;
+}
+
+.rightcontainer.charity {
+    top: -1000px;
+    padding-left: 40px;
+    padding-top: 30px;
+}
+
+.rightcontainer.signature {
+    top: -1000px;
+    padding-left: 40px;
+    padding-top: 30px;
+}
+
+.visible {
+    top: 0px !important;
+}
+
+.organization {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    padding-left: 10px;
+
+    position: relative;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    transition: left 0.1s;
+    -moz-transition: left 0.1s;
+    -webkit-transition: left 0.1s;
+    -o-transition: left 0.1s;    
+}
+
+.organization:hover {
+    left: 6px;
+    background-color: #f5f5f5;    
+}
+
+.organization .image {
+    width: 120px;
+    height: 120px;
+    background-position: left center;
+    background-size: 200%;
+    background-repeat: no-repeat;
+    
+    -webkit-border-radius: 120px;
+    -moz-border-radius: 120px;
+    border-radius: 120px;    
+}
+
+.organization .desc {
+    margin-left: 10px;
+}
+
+.organization .desc .title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    line-height: 1em;
+    color: #222;
+    opacity:0.9;
+}
+
+.organization .desc .pitch {
+    line-height: 1.2em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;    
+    opacity:0.9;
+}
+
+
+.organization .desc .options {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.organization .desc .options .option .price {
+    font-weight: bold;
+}
+
+.organization .image.oxfam {
+    background-image: url(http://www.oxfam.org/sites/www.oxfam.org/files/imagecache/middlewidth/donateok.jpg);
+}
+
+.organization .image.dwb {
+    background-image: url(http://www.doctorswithoutborders.org/images/2012/MSF115051-Palestine.jpg);
+    background-position: right center;
+}
+
+.organization .image.stc {
+    background-image: url(http://web.stc-resources.org/wp-content/uploads/2012/01/Image_14-300x225.jpg);
+    background-position: 50% center;    
+}
+
+.organization .image.rc {
+    background-image: url(http://www.redcross.org.uk/~/media/BritishRedCross/ImageMigration/Migration/Generic/Girl%20smiling%20in%20front%20of%20a%20banner%20of%20the%20red%20cross%20logo%20-%20ph-003-1905.jpg?mw=235);
+    background-position: 50% center;        
+}
+
+.super {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    line-height: 1.2em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;    
+    opacity:0.9;
+}
+
+.signature img {
+    margin-top: 30px;
+    border: 1px solid #eee;
+}
+
+.signature .call {
+    background-color: #7e4486;
+}
+
+.signature .call.disabled {
+    opacity: 0.5;
+}
+
+.signature .instruction {
+}
+
+.signature .hidden {
+    visibility: hidden;
+}

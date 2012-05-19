@@ -9,7 +9,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>1-Line</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.1line.safari</string>
+	<string>com.l1.safari.l1</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -52,6 +52,8 @@
 			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://1-line.org/extensions/SafariExtensionUpdate.plist</string>
 	<key>Website</key>
 	<string>http://1-line.org</string>
 </dict>

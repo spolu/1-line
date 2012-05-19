@@ -29,7 +29,8 @@ setInterval(function() {
         L1.email = $(this).val();
 
         // REMOVE EXISTING
-        
+     
+        // >> EDITABLE IFRAME (RICH FORMATTING)
         $(el).contents().find('.editable').contents().find('body').each(function() {
           
           $(this).parent().find('body > span.l1-signature').remove();
@@ -40,7 +41,8 @@ setInterval(function() {
             if(/1-line\.org/.test($(this).html()))
               $(this).remove();
           });
-        });
+        });        
+        
       }
     });
     
@@ -53,6 +55,7 @@ setInterval(function() {
 
     // INJECTION
 
+    // >> EDITABLE IFRAME (RICH FORMATTING)
     $(el).contents().find('.editable').contents().find('body').each(function() {      
       var body = $(this);
 
