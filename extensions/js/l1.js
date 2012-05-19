@@ -2,8 +2,24 @@
 var L1 = {};
 
 L1.build_signature = function(email, cont_) {
+  
+  var ua = 'unknown';
+  if(navigator && typeof navigator.userAgent === 'string') {
+    if(navigator.userAgent.toLowerCase().indexOf('chrome') !== -1) {
+      ua = 'chrome';
+    }
+    else if(navigator.userAgent.toLowerCase().indexOf('safari') !== -1) {
+      ua = 'safari';
+    }
+    else if(navigator.userAgent.toLowerCase().indexOf('firefox') !== -1) {
+      ua = 'firefox';
+    }
+  }  
+  
   var endpoint = 'https://1-line.org/signature';
-  var args = '?email=' + encodeURIComponent(email);
+  var args = '?email=' + encodeURIComponent(email) + 
+    '&ua=' + encodeURIComponent(ua);
+
   $.ajax({ url: endpoint + args })
     .done(function(data) {
       if(typeof data !== 'object') {
@@ -14,10 +30,7 @@ L1.build_signature = function(email, cont_) {
           cont_(err);
         }
       }
-      //console.log(data);
       if(data.ok) {
-        //console.log('OK');
-        //console.log(data.html);
         cont_(null, data.html);
       }
       else {

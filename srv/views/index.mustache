@@ -25,7 +25,7 @@
   <body>
     <div class="leftcontainer">
       <div class="header">
-        <div class="name">        
+        <div class="name" onclick="window.location='http://1-line.org'">        
           1-LINE
         </div>
         <div class="pitch">
@@ -139,6 +139,22 @@
           </tr>
         </table>
       </div>
+
+      <br/>
+      <center>
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-8027480872575211";
+        /* 1-line */
+        google_ad_slot = "2066457515";
+        google_ad_width = 468;
+        google_ad_height = 60;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </center>
+      
     </div>
 
     <script type="text/javascript">
@@ -173,16 +189,18 @@
         </div>
         <br/>
         <div class="instruction chrome hidden">
-          Chrome instructions
+          You are being redirected to the Google Chrome Web Store to install
+          the 1-Line Gmail Extension from there.
         </div>
         <div class="instruction safari hidden">
           Safari instructions
         </div>
         <div class="instruction firefox hidden">
-          Firefox instructions
+          You are being redirected to the Firefox Add-ons Website to install
+          the 1-Line Gmail Extension from there.
         </div>
         <div class="instruction unknown hidden">
-          Unknown instructions
+          Sorry your browser is not supported yet :(
         </div>
       </center>
     </div>
@@ -190,14 +208,16 @@
     <script type="text/javascript">
     $(document).ready(function() {
       $('.rightcontainer.signature .call').click(function() {
-        console.log(navigator.userAgent.toLowerCase());
+        //console.log(navigator.userAgent.toLowerCase());
         if(navigator.userAgent.toLowerCase().indexOf('chrome') !== -1) {
+          window.open('https://chrome.google.com/webstore/detail/nbohjbehnnggbmibmdcdnfekjmobohlf');
           $('.instruction.chrome').removeClass('hidden');
         }
         else if(navigator.userAgent.toLowerCase().indexOf('safari') !== -1) {
           $('.instruction.safari').removeClass('hidden');
         }
         else if(navigator.userAgent.toLowerCase().indexOf('firefox') !== -1) {
+          window.open('https://addons.mozilla.org/en-US/firefox/addon/1-line/');
           $('.instruction.firefox').removeClass('hidden');
         }
         else {

@@ -91,6 +91,21 @@ app.get('/404', function(req, res, next) {
 });
 
 
+app.get('/support_safari', function(req, res, next) {
+  var locals = {};
+  res.render('support_safari', {
+    locals: locals
+  });  
+});
+
+app.get('/support_chrome', function(req, res, next) {
+  var locals = {};
+  res.render('support_chrome', {
+    locals: locals
+  });  
+});
+
+
 app.listen(8080);
 
 app.on('listening', function () {

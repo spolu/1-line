@@ -26,6 +26,7 @@ body {
     font-weight: normal;
     text-shadow: rgba(248,49,42,1.0) 0px -1px 1px;
     color: #f76964;
+    cursor: pointer;
 }
 
 .header .pitch {
@@ -229,4 +230,28 @@ body {
 
 .signature .hidden {
     visibility: hidden;
+}
+
+.rightcontainer.support {
+    padding-top: 30px;
+    padding-left: 30px;
+
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    line-height: 1.2em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;    
+    opacity:0.9;
+}
+
+.rightcontainer.support h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    line-height: 1em;
+    color: #222;
+    opacity:0.9;
 }
