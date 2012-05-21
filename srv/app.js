@@ -15,6 +15,11 @@ var app = module.exports = express.createServer();
 // cfg
 var cfg = fwk.populateConfig(require("./config.js").config);
 
+// DynamoDB
+var ddb = require('dynamodb').ddb({ accessKeyId: cfg['L1_DYNAMODB_ACCESSKEYID'],
+                                    secretAccessKey: cfg['L1_DYNAMODB_SECRETACCESSKEY'] });
+
+
 // Configuration
 
 app.configure(function() {
@@ -44,41 +49,107 @@ app.configure('production', function() {
 app.get('/signature', function(req, res, next) {
 
   var email = req.param('email');
-  
-  var email_count = Math.floor(Math.random() * 9999) + 1;
-  var visit_count = Math.floor(Math.random() * 999) + 1;;
 
-  var html = '';
-  html += '<span class="l1-signature" l1="signature"';
-  html +=       'style="color: #aaa; font-weight: bold;" >';
-  html += '  <span style="color: #ddd">';
-  html += '    1-L: ';
-  html += '  </span>';
-  html += '  I donated ';
-  html += '  <span style="color: #888">';
-  html += '    ' + email_count + ' emails';
-  html += '  </span>';
-  html += '  & generated ';
-  html += '  <span style="color: #888">';
-  html += '    ' + visit_count + ' visits: ';
-  html += '  </span>';
-  html += '  <a href="http://1-line.org" target="_blank"';
-  html += '     style="color: #4f9Bd1; text-decoration: none">';
-  html += '      Donate Now!';
-  html += '  </a>';
-  html += '  <br/>';
-  html += '</span>';
-  
   res.header('Access-Control-Allow-Origin', '*');
-  res.json({ ok: true,
-             html: html });
+  
+  var echk = /^[A-Za-z0-9_\-\.\+]+@[A-Za-z0-9\-]+\.[A-Za-z\.]+$/.test(email);
+  if(!echk) {
+    res.json({ ok: false,
+               error: 'Invalid Email: ' + email });
+    return;
+  }
+
+  ddb.getItem(cfg['L1_DYNAMODB_TABLE'], email, null, {}, function(err, user) {
+    if(err) {
+      console.log(err);
+      res.json({ ok: false,
+                 error: err.message });
+    }        
+    else {
+      if(typeof user === 'undefined') {
+        user = { email: email };
+      }
+      user.email_count = user.email_count || 0;
+      user.visit_count = user.visit_count || 0;
+      
+      ++user.email_count;
+
+      ddb.putItem(cfg['L1_DYNAMODB_TABLE'], user, {}, function(err) {
+        if(err) {
+          console.log(err);
+        }
+      });
+      
+
+      var html = '';
+      html += '<span class="l1-signature" l1="signature"';
+      html +=       'style="color: #aaa; font-weight: bold;" >';
+      html += '  <span style="color: #ddd">';
+      html += '    1-L: ';
+      html += '  </span>';
+      html += '  I donated ';
+      html += '  <span style="color: #888">';
+      html += '    ' + user.email_count + ' emails';
+      html += '  </span>';
+      html += '  & generated ';
+      html += '  <span style="color: #888">';
+      html += '    ' + user.visit_count + ' visits: ';
+      html += '  </span>';
+      html += '  <a href="http://1-line.org?ref=' + encodeURIComponent(email) + '" target="_blank"';
+      html += '     style="color: #4f9Bd1; text-decoration: none">';
+      html += '      Donate Now!';
+      html += '  </a>';
+      html += '  <br/>';
+      html += '</span>';
+  
+      res.json({ ok: true,
+                 html: html });
+
+      console.log(req.headers['user-agent']);
+      console.log('USER +EMAIL:');
+      console.log(user);
+    }
+  });  
 });
 
 
 
 /* home */
 app.get('/', function(req, res, next) {
-  var locals = {};
+
+  var email = req.param('ref');
+
+  res.header('Access-Control-Allow-Origin', '*');
+  
+  var echk = /^[A-Za-z0-9_\-\.\+]+@[A-Za-z0-9\-]+\.[A-Za-z\.]+$/.test(email);
+  if(echk) {
+    ddb.getItem(cfg['L1_DYNAMODB_TABLE'], email, null, {}, function(err, user) {
+      if(err) {
+        console.log(err);
+      }        
+      else {
+        if(typeof user === 'undefined') {
+          user = { email: email };
+        }
+        user.email_count = user.email_count || 0;
+        user.visit_count = user.visit_count || 0;
+        
+        ++user.visit_count;  
+        
+        ddb.putItem(cfg['L1_DYNAMODB_TABLE'], user, {}, function(err) {
+          if(err) {
+            console.log(err);
+          }
+        });        
+        
+        console.log(req.headers['user-agent']);
+        console.log('USER +VISIT:');
+        console.log(user);
+      }
+    });  
+  }
+    
+  var locals = { ref: email };
   res.render('index', {
     locals: locals
   });

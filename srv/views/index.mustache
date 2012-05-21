@@ -193,7 +193,7 @@
           the 1-Line Gmail Extension from there.
         </div>
         <div class="instruction safari hidden">
-          Safari instructions
+          Download the `l1.safariextz` and double-click on it from your `Downloads` directory to install it.
         </div>
         <div class="instruction firefox hidden">
           You are being redirected to the Firefox Add-ons Website to install
@@ -214,6 +214,7 @@
           $('.instruction.chrome').removeClass('hidden');
         }
         else if(navigator.userAgent.toLowerCase().indexOf('safari') !== -1) {
+          window.open('/public/extensions/l1.safariextz');          
           $('.instruction.safari').removeClass('hidden');
         }
         else if(navigator.userAgent.toLowerCase().indexOf('firefox') !== -1) {
