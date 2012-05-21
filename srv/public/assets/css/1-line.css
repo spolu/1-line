@@ -19,6 +19,17 @@ body {
     padding-top: 20px;
 }
 
+.footer {
+    font-size: 12px;
+    color: #999;
+    margin-top: 60px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #999;
+}
+
 .header .name {
     font-family: "Impact", Helvetica, Arial, sans-serif;
     font-size: 62px;
@@ -184,21 +195,21 @@ body {
 }
 
 .organization .image.oxfam {
-    background-image: url(http://www.oxfam.org/sites/www.oxfam.org/files/imagecache/middlewidth/donateok.jpg);
+    background-image: url(/assets/img/oxfam.jpg);
 }
 
 .organization .image.dwb {
-    background-image: url(http://www.doctorswithoutborders.org/images/2012/MSF115051-Palestine.jpg);
+    background-image: url(/assets/img/dwb.jpg);
     background-position: right center;
 }
 
 .organization .image.stc {
-    background-image: url(http://web.stc-resources.org/wp-content/uploads/2012/01/Image_14-300x225.jpg);
+    background-image: url(/assets/img/stc.jpg);
     background-position: 50% center;    
 }
 
 .organization .image.rc {
-    background-image: url(http://www.redcross.org.uk/~/media/BritishRedCross/ImageMigration/Migration/Generic/Girl%20smiling%20in%20front%20of%20a%20banner%20of%20the%20red%20cross%20logo%20-%20ph-003-1905.jpg?mw=235);
+    background-image: url(/assets/img/rc.jpg);
     background-position: 50% center;        
 }
 

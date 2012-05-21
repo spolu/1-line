@@ -9,6 +9,7 @@ var fwk = require('fwk');
 var express = require('express');
 var http = require('http');
 var Mu = require('mu');
+var mixpanel = require('mixpanel');
 
 var app = module.exports = express.createServer();
 
@@ -19,6 +20,8 @@ var cfg = fwk.populateConfig(require("./config.js").config);
 var ddb = require('dynamodb').ddb({ accessKeyId: cfg['L1_DYNAMODB_ACCESSKEYID'],
                                     secretAccessKey: cfg['L1_DYNAMODB_SECRETACCESSKEY'] });
 
+// Mixpanel
+var mp = new mixpanel.Client('80ea26f0f4c848646e7d68c993cc2162');
 
 // Configuration
 
@@ -59,6 +62,12 @@ app.get('/signature', function(req, res, next) {
     return;
   }
 
+  mp.track("srv-signature", { email: email },
+           function(err) {
+             if(err)
+               console.log(err);
+           });    
+
   ddb.getItem(cfg['L1_DYNAMODB_TABLE'], email, null, {}, function(err, user) {
     if(err) {
       console.log(err);
@@ -68,11 +77,21 @@ app.get('/signature', function(req, res, next) {
     else {
       if(typeof user === 'undefined') {
         user = { email: email };
+        mp.track("srv-create", { email: email },
+                 function(err) {
+                   if(err)
+                     console.log(err);
+                 });    
       }
       user.email_count = user.email_count || 0;
       user.visit_count = user.visit_count || 0;
       
       ++user.email_count;
+      mp.track("srv-email", { email: email },
+               function(err) {
+                 if(err)
+                   console.log(err);
+               });    
 
       ddb.putItem(cfg['L1_DYNAMODB_TABLE'], user, {}, function(err) {
         if(err) {
@@ -95,7 +114,7 @@ app.get('/signature', function(req, res, next) {
       html += '  <span style="color: #888">';
       html += '    ' + user.visit_count + ' visits: ';
       html += '  </span>';
-      html += '  <a href="http://1-line.org?ref=' + encodeURIComponent(email) + '" target="_blank"';
+      html += '  <a href="https://1-line.org?ref=' + encodeURIComponent(email) + '" target="_blank"';
       html += '     style="color: #4f9Bd1; text-decoration: none">';
       html += '      Donate Now!';
       html += '  </a>';
@@ -120,6 +139,12 @@ app.get('/', function(req, res, next) {
   var email = req.param('ref');
 
   res.header('Access-Control-Allow-Origin', '*');
+
+  mp.track("srv-home", { ref: email },
+           function(err) {
+             if(err)
+               console.log(err);
+           });    
   
   var echk = /^[A-Za-z0-9_\-\.\+]+@[A-Za-z0-9\-]+\.[A-Za-z\.]+$/.test(email);
   if(echk) {
@@ -130,11 +155,21 @@ app.get('/', function(req, res, next) {
       else {
         if(typeof user === 'undefined') {
           user = { email: email };
+          mp.track("srv-create", { email: email },
+                   function(err) {
+                     if(err)
+                       console.log(err);
+                   });    
         }
         user.email_count = user.email_count || 0;
         user.visit_count = user.visit_count || 0;
         
         ++user.visit_count;  
+        mp.track("srv-visit", { email: email },
+                 function(err) {
+                   if(err)
+                     console.log(err);
+                 });    
         
         ddb.putItem(cfg['L1_DYNAMODB_TABLE'], user, {}, function(err) {
           if(err) {

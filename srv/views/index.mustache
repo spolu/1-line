@@ -11,21 +11,27 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
     <!-- jquery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <!-- cell.js -->
     <script src="/lib/cell-0.3.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="/assets/ico/favicon.ico">
     <link href="/assets/css/1-line.css" rel="stylesheet">
+
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+    for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+    mixpanel.init("80ea26f0f4c848646e7d68c993cc2162");</script>
+    <!-- end Mixpanel -->
   </head>
   
   <body>
     <div class="leftcontainer">
       <div class="header">
-        <div class="name" onclick="window.location='http://1-line.org'">        
+        <div class="name" onclick="window.location='https://1-line.org'">        
           1-LINE
         </div>
         <div class="pitch">
@@ -43,6 +49,10 @@
         <div class="signature call">
           Donate your Gmail Signature &raquo;
         </div>
+      </div>
+
+      <div class="footer">
+        &copy; Stanislas Polu 2012. | <a href="mailto:polu.stanislas@gmail.com">Contact</a>
       </div>
     </div>
 
@@ -151,7 +161,7 @@
         //-->
         </script>
         <script type="text/javascript"
-        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
         </script>
       </center>
       
@@ -160,15 +170,19 @@
     <script type="text/javascript">
     $(document).ready(function() {
       $('.organization.oxfam').click(function() {
+        mixpanel.track('cli-charity', { type: 'oxfam' });
         window.open('http://www.oxfam.org.uk/donate');
       });
       $('.organization.dwb').click(function() {
+        mixpanel.track('cli-charity', { type: 'dwb' });
         window.open('https://www.doctorswithoutborders.org/donate');
       });
       $('.organization.stc').click(function() {
+        mixpanel.track('cli-charity', { type: 'stc' });
         window.open('https://secure.savethechildren.org/donate');
       });
       $('.organization.rc').click(function() {
+        mixpanel.track('cli-charity', { type: 'rc' });
         window.open('http://www.redcross.org.uk/donate');
       });
     });
@@ -197,7 +211,8 @@
         </div>
         <div class="instruction firefox hidden">
           You are being redirected to the Firefox Add-ons Website to install
-          the 1-Line Gmail Extension from there.
+          the 1-Line Gmail Extension from there. Please then navigate to <a href="https://1-line.org/">https://1-line.org/</a> and accept
+          the SSL exception.
         </div>
         <div class="instruction unknown hidden">
           Sorry your browser is not supported yet :(
@@ -212,17 +227,21 @@
         if(navigator.userAgent.toLowerCase().indexOf('chrome') !== -1) {
           window.open('https://chrome.google.com/webstore/detail/nbohjbehnnggbmibmdcdnfekjmobohlf');
           $('.instruction.chrome').removeClass('hidden');
+          mixpanel.track('cli-install', { type: 'chrome' });
         }
         else if(navigator.userAgent.toLowerCase().indexOf('safari') !== -1) {
-          window.open('/public/extensions/l1.safariextz');          
+          window.location = '/extensions/l1.safariextz';
           $('.instruction.safari').removeClass('hidden');
+          mixpanel.track('cli-install', { type: 'safari' });
         }
         else if(navigator.userAgent.toLowerCase().indexOf('firefox') !== -1) {
           window.open('https://addons.mozilla.org/en-US/firefox/addon/1-line/');
           $('.instruction.firefox').removeClass('hidden');
+          mixpanel.track('cli-install', { type: 'firefox' });
         }
         else {
           $('.instruction.unknown').removeClass('hidden');
+          mixpanel.track('cli-unknown');
         }
         $('.signature .call').addClass('disabled');
       });
@@ -238,10 +257,12 @@
       $('.charity').click(function() {
         $('.charity').addClass('visible');
         $('.signature').removeClass('visible');
+        mixpanel.track('cli-call', { type: 'charity' });
       })
       $('.signature').click(function() {
         $('.signature').addClass('visible');
         $('.charity').removeClass('visible');
+        mixpanel.track('cli-call', { type: 'signature' });
       })
     });
     </script>
